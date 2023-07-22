@@ -40,7 +40,7 @@ class Server:
         item_range = index_range(page, page_size)
         self.dataset()
         length = len(self.__dataset)
-        if item_range[0] >= length:
+        if item_range[0] > length:
             return []
         elif item_range[1] > length:
             return self.__dataset[item_range[0], length]
