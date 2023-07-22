@@ -42,7 +42,5 @@ class Server:
         length = len(self.__dataset)
         if item_range[0] > length:
             return []
-        elif item_range[1] > length:
-            return self.__dataset[item_range[0], length]
         else:
             return self.__dataset[item_range[0]:item_range[1]]
