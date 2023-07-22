@@ -2,9 +2,10 @@
 """
 0. Simple helper function: Pagination Task 0
 """
+from typing import Tuple
 
 
-def index_range(page: int, page_size: int) -> tuple:
+def index_range(page: int, page_size: int) -> Tuple[int, int]:
     """
     A function takes two arguments
     - page
