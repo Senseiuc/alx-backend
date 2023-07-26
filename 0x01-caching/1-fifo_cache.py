@@ -14,6 +14,9 @@ class FIFOCache(BaseCaching):
     """
 
     def put(self, key, item):
+        """
+        Adds item to the object dict
+        """
         if key is not None and item is not None:
             self.cache_data[key] = item
             keys = self.cache_data.keys()
