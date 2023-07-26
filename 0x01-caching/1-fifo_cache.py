@@ -5,6 +5,7 @@ Base Caching
 Author:SenseiUC
 """
 from base_caching import BaseCaching
+from collections import OrderedDict
 
 
 class FIFOCache(BaseCaching):
@@ -12,6 +13,12 @@ class FIFOCache(BaseCaching):
     A class that implements first in first out out
     approach of caching
     """
+    def __init__(self):
+        """
+        Initializes the cache
+        """
+        super().__init__()
+        self.cache_data = OrderedDict()
 
     def put(self, key, item):
         """
@@ -21,8 +28,9 @@ class FIFOCache(BaseCaching):
             self.cache_data[key] = item
             keys = self.cache_data.keys()
             if len(keys) > BaseCaching.MAX_ITEMS:
-                print('DISCARD:{}'.format(list(keys)[0]))
-                del self.cache_data[list(keys)[0]]
+                print(self.cache_data.popitem(False))
+                first_key, _ = self.cache_data.popitem(last=False)
+                print('DISCARD:{}'.format(first_key))
 
     def get(self, key):
         """
