@@ -8,7 +8,7 @@ from base_caching import BaseCaching
 from collections import OrderedDict
 
 
-class FIFOCache(BaseCaching):
+class LIFOCache(BaseCaching):
     """
     A class that implements first in first out out
     approach of caching
@@ -25,11 +25,10 @@ class FIFOCache(BaseCaching):
         Adds item to the object dict
         """
         if key is not None and item is not None:
+            if len(self.cache_data) == BaseCaching.MAX_ITEMS and key not in self.cache_data:
+                last_key, _ = self.cache_data.popitem(True)
+                print('DISCARD:{}'.format(last_key))
             self.cache_data[key] = item
-            keys = self.cache_data
-            if len(keys) > BaseCaching.MAX_ITEMS:
-                first_key, _ = self.cache_data.popitem(False)
-                print('DISCARD:{}'.format(first_key))
             self.cache_data.move_to_end(key, last=True)
 
     def get(self, key):
