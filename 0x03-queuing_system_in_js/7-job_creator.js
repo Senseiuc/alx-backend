@@ -52,8 +52,8 @@ const jobs = [
   }
 ];
 
-for (const job of jobs){
-  const job  = queue.create('push_notification_code_2', job)
+for (let job of jobs){
+  job  = queue.create('push_notification_code_2', job);
     job.on('complete', (result) => { /* eslint-disable-line no-unused-vars */
       console.log(`Notification job ${job.id} completed`);
     })
